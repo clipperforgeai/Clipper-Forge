@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- ⚡ FIX: Hapus COOP/COEP meta tags — tidak berfungsi di browser modern,
+       dan Anda pakai @ffmpeg/core ST (single-threaded) yang tidak butuh SharedArrayBuffer -->
+
+  <title>Clipper Forge</title>
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('ai-agent-theme');
+        var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="premium-ui.css">
+
+  <script src="./mp4-muxer.min.js"></script>
+
+  <!-- ⚡ FIX: Config wasm URL untuk API @ffmpeg/ffmpeg@0.12.6 (BUKAN createFFmpeg lama) -->
+  <script>
+    (function() {
+      'use strict';
+
+      // URL GitHub Releases untuk ffmpeg-core.wasm (30 MB, terlalu besar untuk repo)
+      window.FFMPEG_CORE_WASM_URL = "https://github.com/clipperforgeai/Clipper-Forge/releases/download/V2.0.0/ffmpeg-core.wasm";
+
+      // Preload hint — browser mulai download lebih awal (bisa paralel dengan JS parsing)
+      try {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'fetch';
+        link.href = window.FFMPEG_CORE_WASM_URL;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+      } catch (e) { /* noop */ }
+
+      console.log('[Config] FFmpeg core WASM URL:', window.FFMPEG_CORE_WASM_URL);
+    })();
+  </script>
+</head>
+<body>
+  <!-- ... REST OF BODY TIDAK BERUBAH — pakai body Anda yang lama ... -->
+  <div class="app-container">
+    <!-- (salin body HTML Anda yang lama di sini, tidak ada perubahan) -->
+  </div>
+
+  <!-- ═══ SCRIPT LOAD ORDER (tidak berubah) ═══ -->
+  <script src="resource-manager.js"></script>
+  <script src="video-signal-engine.js"></script>
+  <script src="hooks-db.js"></script>
+ <script src="polish-v9.js"></script> 
+ <script src="mp4-trim.js"></script>
+  <script src="mp4box.all.min.js"></script>
+  <script src="814.ffmpeg.js"></script>
+  <script src="ffmpeg.js"></script>
+  <script src="script.js"></script>
+  <script src="features-v2.js"></script>
+  <script type="module" src="ai-bridge.js"></script>
+  <script src="ai.js"></script>
+  <script src="llm-engine.js"></script>
+  <script src="llm-cache.js"></script>
+  <script src="llm-patch.js"></script>
+  <script src="turbo-mode.js"></script>
+  <script src="auto-save.js"></script>
+  <script src="./clipper-core.js" defer></script>
+  <script src="upgrades-v26.js"></script>
+  <script src="whisper-auto.js"></script>
+  <script src="Whisper-addon.js" defer></script>
+  <script type="module" src="trim-router.js"></script>
+  <script type="module" src="smart-trimmer.js"></script>
+  <script type="module" src="main.js"></script>
+
+  <!-- (script inline SmartPatch + SW registration — tidak berubah) -->
+</body>
+</html>
