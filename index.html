@@ -7,11 +7,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#0b0f19">
   <meta name="color-scheme" content="dark light">
-
-  <!-- ⚡ FIX: Hapus COOP/COEP meta tags — tidak berfungsi di browser modern,
-       dan Anda pakai @ffmpeg/core ST (single-threaded) yang tidak butuh SharedArrayBuffer -->
-
-  <title>Clipper Forge</title>
+  
+<title>Clipper Forge</title>
   <link rel="manifest" href="manifest.json">
 
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -33,13 +30,10 @@
   <link rel="stylesheet" href="premium-ui.css">
 
   <script src="./mp4-muxer.min.js"></script>
-
-  <!-- ⚡ FIX: Config wasm URL untuk API @ffmpeg/ffmpeg@0.12.6 (BUKAN createFFmpeg lama) -->
   <script>
     (function() {
       'use strict';
 
-      // URL GitHub Releases untuk ffmpeg-core.wasm (30 MB, terlalu besar untuk repo)
       window.FFMPEG_CORE_WASM_URL = "https://github.com/clipperforgeai/Clipper-Forge/releases/download/V2.0.0/ffmpeg-core.wasm";
 
       // Preload hint — browser mulai download lebih awal (bisa paralel dengan JS parsing)
@@ -57,9 +51,8 @@
   </script>
 </head>
 <body>
-  <!-- ... REST OF BODY TIDAK BERUBAH — pakai body Anda yang lama ... -->
   <div class="app-container">
-    <!-- (salin body HTML Anda yang lama di sini, tidak ada perubahan) -->
+    
   </div>
 
   <!-- ═══ SCRIPT LOAD ORDER (tidak berubah) ═══ -->
@@ -88,6 +81,5 @@
   <script type="module" src="smart-trimmer.js"></script>
   <script type="module" src="main.js"></script>
 
-  <!-- (script inline SmartPatch + SW registration — tidak berubah) -->
-</body>
+</body>l
 </html>
