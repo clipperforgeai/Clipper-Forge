@@ -36,8 +36,8 @@
 
       window.FFMPEG_CORE_WASM_URL = "https://github.com/clipperforgeai/Clipper-Forge/releases/download/V2.0.0/ffmpeg-core.wasm";
 
-      // Preload hint — browser mulai download lebih awal (bisa paralel dengan JS parsing)
-      try {
+  
+     try {
         const link = document.createElement('link');
         link.rel = 'preload';
         link.as = 'fetch';
